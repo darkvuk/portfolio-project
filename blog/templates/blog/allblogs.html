@@ -13,7 +13,7 @@
       content="Mark Otto, Jacob Thornton, and Bootstrap contributors"
     />
     <meta name="generator" content="Hugo 0.118.2" />
-    <title>Home</title>
+    <title>Blogs</title>
 
     <link
       rel="canonical"
@@ -216,7 +216,9 @@
               >
                 Resume
               </a>
-              <a class="nav-item nav-link" href="{% url 'allblogs' %}">Blog</a>
+              <a class="nav-item nav-link active" href="{% url 'allblogs' %}">
+                Blog
+              </a>
             </div>
           </div>
         </div>
@@ -224,47 +226,27 @@
     </header>
 
     <main>
-      <section class="py-5 text-center container">
-        <div class="row py-lg-5">
-          <div class="col-lg-6 col-md-8 mx-auto">
-            <h1 class="fw-light">Hi, I'm Darko.</h1>
-            <p class="lead text-body-secondary">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed quis
-              ex ac sapien convallis mattis. Nullam id justo lectus. Vivamus
-              pretium justo non porttitor tempus. Praesent sit amet pulvinar
-              ipsum, vel fringilla mauris. Mauris molestie a lacus quis
-              consequat. Sed gravida iaculis elit, quis aliquam ante feugiat
-              sed. Praesent non ullamcorper arcu, non fringilla lacus. Donec
-              elementum gravida leo, nec finibus arcu egestas maximus. Nullam
-              condimentum nec ligula eu eleifend.
-            </p>
-            <p>
-              <a
-                href="mailto:darko.vukasovic.weareai@outlook.com"
-                class="btn btn-primary my-2"
-                >Email Me</a
-              >
-            </p>
-            <img src="{% static 'darko.jpeg' %}" height="300" />
-          </div>
-        </div>
-      </section>
+      <div class="container">
+        <h1 class="text-center pt-3">Welcome to Darko's Blog</h1>
+        <br />
+        <br />
+        <h2 class="">Latest Post</h2>
+        <hr />
 
-      <div class="album py-5 bg-body-tertiary">
-        <div class="container">
-          <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-            {% for job in jobs.all %}
-            <div class="col">
-              <div class="card shadow-sm">
-                <img class="card-img-top" src="{{ job.image.url }}" />
-                <div class="card-body">
-                  <p class="card-text">{{ job.summary }}</p>
-                </div>
-              </div>
-            </div>
-            {% endfor %}
-          </div>
-        </div>
+        {% for blog in blogs.all %}
+        <a href="{% url 'detail' blog.id %}"><h3>{{ blog.title }}</h3></a>
+        <p>{{ blog.pub_date_pretty }}</p>
+        <br />
+        <img
+          class="img-fluid"
+          src="{{ blog.image.url }}"
+          height="400"
+          width="400"
+        />
+        <br />
+        <p>{{ blog.summary }}</p>
+        <br />
+        {% endfor %}
       </div>
     </main>
 
